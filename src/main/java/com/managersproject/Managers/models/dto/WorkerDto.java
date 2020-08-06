@@ -1,4 +1,4 @@
-package com.managersproject.Managers.models.Dto;
+package com.managersproject.Managers.models.dto;
 
 import lombok.Builder;
 import lombok.Data;
