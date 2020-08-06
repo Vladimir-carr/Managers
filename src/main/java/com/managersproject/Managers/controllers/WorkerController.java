@@ -7,11 +7,14 @@ import com.managersproject.Managers.repository.WorkRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Slf4j
-//@RequestMapping(path = "worker")
+@RequestMapping(path = "worker")
 public class WorkerController {
 
     @Autowired
@@ -36,8 +39,11 @@ public class WorkerController {
     }
 
     @GetMapping("/get/{id}")
-    Worker getFromIdWorker(@PathVariable(name = "id") Long id, @RequestParam(name = "id") int idNum) {
-        return null;
+    Worker getFromIdWorker(@PathVariable(name = "id") long id) {
+        Optional<Worker> list = workRepository.findById(id);
+        ArrayList<Worker> workers = new ArrayList<>();
+        list.ifPresent(workers::add);
+        return getFromIdWorker(id);
     }
 
 }
