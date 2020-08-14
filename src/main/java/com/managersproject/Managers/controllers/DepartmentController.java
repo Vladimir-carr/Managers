@@ -1,7 +1,7 @@
 package com.managersproject.Managers.controllers;
 
 import com.managersproject.Managers.models.dto.DepartmentDto;
-import com.managersproject.Managers.models.entity.Departments;
+import com.managersproject.Managers.models.entity.Department;
 import com.managersproject.Managers.repository.DepartmentRepository;
 import com.managersproject.Managers.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,13 +33,13 @@ public class DepartmentController {
     }
 
     @PostMapping("/get")
-    List<Departments> getDepartments(@RequestBody Departments departments) {
+    List<Department> getDepartments(@RequestBody Department department) {
         return departmentRepository.findAll();
     }
 
     @GetMapping("/get/{id}")
-    ResponseEntity<Departments> getFromIfDepartment(@PathVariable(name = "id") long id) {
-        Optional<Departments> byId = departmentRepository.findById(id);
+    ResponseEntity<Department> getFromIfDepartment(@PathVariable(name = "id") long id) {
+        Optional<Department> byId = departmentRepository.findById(id);
         if (byId.isPresent()) {
             return ResponseEntity.ok(byId.get());
         }

@@ -1,9 +1,9 @@
 package com.managersproject.Managers.models.entity;
 
 import lombok.*;
-import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -11,15 +11,20 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "workers")
+@Table(name = "WORKER")
 public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "worker_name")
-    private String workerName;
-    @Column(name ="worker_age")
-    private int workerAge;
+    private String name;
+    private int age;
+
+    @JoinColumn(name = "department_id", foreignKey = @ForeignKey(name = worker_to_department))
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Department department;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "worker")
+    private Set<WorkShift> workShiftList;
 }

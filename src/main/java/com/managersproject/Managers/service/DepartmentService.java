@@ -1,6 +1,6 @@
 package com.managersproject.Managers.service;
 
-import com.managersproject.Managers.models.entity.Departments;
+import com.managersproject.Managers.models.entity.Department;
 import com.managersproject.Managers.repository.DepartmentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +15,13 @@ public class DepartmentService {
     DepartmentRepository departmentRepository;
 
     public void addDepartment(DepartmentDto departmentDto) {
-        Departments departments = departmentDtoToDepartmentsMapping(departmentDto);
-        departmentRepository.save(departments);
+        Department department = departmentDtoToDepartmentsMapping(departmentDto);
+        departmentRepository.save(department);
         log.info("Департамент добавлен в базу: {}", departmentDto);
     }
 
-    public Departments departmentDtoToDepartmentsMapping(DepartmentDto departmentDto) {
-        return Departments.builder()
+    public Department departmentDtoToDepartmentsMapping(DepartmentDto departmentDto) {
+        return Department.builder()
                 .departmentName(departmentDto.getDepartmentDtoName())
                 .build();
     }

@@ -23,7 +23,7 @@ public class WorkerService {
 
     public Worker workerDtoToWorkerMapping(WorkerDto workerDto) {
         return Worker.builder()
-                .workerAge(workerDto.getWorkerAge())
-                .workerName(workerDto.getWorkerName()).build();
+                .age(workerDto.getAge())
+                .name(workerDto.getName()).build();
     }
 }

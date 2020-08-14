@@ -6,21 +6,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "workers")
-public class Departments {
+@Table(name = "DEPARTMENT")
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "department_name")
     private String departmentName;
-    @Column(name = "id_worker_key")
-    private Long idWorkerKey;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
+    private Set<Worker> workerList;
+
 }
