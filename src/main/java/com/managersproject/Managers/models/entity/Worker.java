@@ -21,7 +21,7 @@ public class Worker {
     private String name;
     private int age;
 
-    @JoinColumn(name = "department_id", foreignKey = @ForeignKey(name = worker_to_department))
+    @JoinColumn(name = "department_id", foreignKey = @ForeignKey(name = "worker_to_department"))
     @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
 

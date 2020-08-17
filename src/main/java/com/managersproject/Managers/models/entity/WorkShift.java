@@ -18,6 +18,6 @@ public class WorkShift {
     private int shiftHours;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "worker_id", foreignKey = @ForeignKey(name = "work_shift_toworker"))
+    @JoinColumn(name = "worker_id", foreignKey = @ForeignKey(name = "work_shift_to_worker"))
     private Worker worker;
 }
