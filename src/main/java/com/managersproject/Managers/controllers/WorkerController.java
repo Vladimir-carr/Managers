@@ -1,18 +1,14 @@
 package com.managersproject.Managers.controllers;
 
 
+import com.managersproject.Managers.models.dto.WorkShiftDto;
 import com.managersproject.Managers.models.dto.WorkerDto;
-import com.managersproject.Managers.models.entity.Worker;
 import com.managersproject.Managers.repository.WorkRepository;
 import com.managersproject.Managers.service.WorkerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -20,20 +16,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class WorkerController {
 
-    WorkRepository workRepository;
-    WorkerService workerService;
+    @Autowired
+    private WorkerService workerService;
 
 
-    @PostMapping("/add")
+    @PostMapping("/addWorker")
     public void addWorker(@RequestBody WorkerDto workerDto) {
         if (workerDto == null) {
             log.warn("Пришел пустой рабочий на метод addWorker");
             return;
         }
-        workerService.addWorker(workerDto);
+        workerService.addNewWorker(workerDto);
     }
 
-    @PostMapping("/get")
+    @PostMapping("/addWorkShift")
+    public void addWorkShift(@RequestBody WorkShiftDto workShiftDto) {
+        if (workShiftDto == null) {
+            log.warn("Пришла пустая рабочая смена на метод addWorkShift");
+        }
+        workerService.addWorkShift(workShiftDto);
+    }
+
+    /*@PostMapping("/get")
     List<Worker> getWorker(@RequestBody Worker worker) {
         return workRepository.findAll();
     }
@@ -45,5 +49,5 @@ public class WorkerController {
             return ResponseEntity.ok(byId.get());
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    }*/
 }

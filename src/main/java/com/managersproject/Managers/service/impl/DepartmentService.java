@@ -1,4 +1,4 @@
-package com.managersproject.Managers.service;
+package com.managersproject.Managers.service.impl;
 
 import com.managersproject.Managers.models.entity.Department;
 import com.managersproject.Managers.repository.DepartmentRepository;
@@ -12,7 +12,7 @@ import com.managersproject.Managers.models.dto.DepartmentDto;
 public class DepartmentService {
 
     @Autowired
-    DepartmentRepository departmentRepository;
+    private DepartmentRepository departmentRepository;
 
     public void addDepartment(DepartmentDto departmentDto) {
         Department department = departmentDtoToDepartmentsMapping(departmentDto);

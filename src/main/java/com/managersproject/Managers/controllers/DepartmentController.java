@@ -3,7 +3,7 @@ package com.managersproject.Managers.controllers;
 import com.managersproject.Managers.models.dto.DepartmentDto;
 import com.managersproject.Managers.models.entity.Department;
 import com.managersproject.Managers.repository.DepartmentRepository;
-import com.managersproject.Managers.service.DepartmentService;
+import com.managersproject.Managers.service.impl.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
