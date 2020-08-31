@@ -9,7 +9,7 @@ import com.managersproject.Managers.models.dto.DepartmentDto;
 
 @Slf4j
 @Service
-public class DepartmentService {
+public class DepartmentServiceImpl {
 
     @Autowired
     private DepartmentRepository departmentRepository;

@@ -6,9 +6,7 @@ import com.managersproject.Managers.models.entity.WorkShift;
 import com.managersproject.Managers.models.entity.Worker;
 import com.managersproject.Managers.repository.WorkRepository;
 import com.managersproject.Managers.repository.WorkShiftRepository;
-import com.managersproject.Managers.service.WorkerService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,7 @@ import java.util.Optional;
  */
 @Service
 @Slf4j
-public class WorkerServiceImpl implements WorkerService {
+public class WorkerServiceImpl {
 
     @Autowired
     private WorkRepository workRepository;
@@ -33,7 +31,6 @@ public class WorkerServiceImpl implements WorkerService {
         log.info("Рабочий добавлен в базу: {}", workerDto);
     }
 
-    @Override
     public void addWorkShift(WorkShiftDto workShiftDto) {
         WorkShift workShift = workShiftDtoToWorkShiftEntity(workShiftDto);
         Optional<Worker> byId = workRepository.findById(workShift.getId());
