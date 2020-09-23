@@ -6,8 +6,11 @@ import com.managersproject.Managers.models.entity.WorkShift;
 import com.managersproject.Managers.models.entity.Worker;
 import com.managersproject.Managers.repository.WorkRepository;
 import com.managersproject.Managers.repository.WorkShiftRepository;
+import com.managersproject.Managers.service.WorkerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,7 +22,7 @@ import java.util.Optional;
  */
 @Service
 @Slf4j
-public class WorkerServiceImpl {
+public class WorkerServiceImpl implements WorkerService {
 
     @Autowired
     private WorkRepository workRepository;
@@ -49,9 +52,29 @@ public class WorkerServiceImpl {
     }
 
 
+    public void getAmountWorkShift(WorkerDto workerDto) {
+        Worker worker = workerDtoToWorkerMapping(workerDto);
+        worker.getWorkShiftList().stream()
+                .map(WorkShift::getShiftHours)
+                .reduce((Integer::sum))
+                .get();
+    }
+
+    public ResponseEntity<Worker> getWorkerById(WorkerDto workerDto) {
+        Worker worker = workerDtoToWorkerMapping(workerDto);
+        Optional<Worker> byId = workRepository.findById(worker.getId());
+        if (byId.isPresent()) {
+            return ResponseEntity.ok(byId.get());
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     public Worker workerDtoToWorkerMapping(WorkerDto workerDto) {
         return Worker.builder()
                 .age(workerDto.getWorkerAge())
-                .name(workerDto.getWorkerName()).build();
+                .name(workerDto.getWorkerName())
+                .department(workerDto.getDepartment())
+                .build();
     }
+
 }

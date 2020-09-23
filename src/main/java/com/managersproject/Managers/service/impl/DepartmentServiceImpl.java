@@ -2,6 +2,7 @@ package com.managersproject.Managers.service.impl;
 
 import com.managersproject.Managers.models.entity.Department;
 import com.managersproject.Managers.repository.DepartmentRepository;
+import com.managersproject.Managers.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import com.managersproject.Managers.models.dto.DepartmentDto;
 
 @Slf4j
 @Service
-public class DepartmentServiceImpl {
+public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
@@ -22,7 +23,6 @@ public class DepartmentServiceImpl {
 
     public Department departmentDtoToDepartmentsMapping(DepartmentDto departmentDto) {
         return Department.builder()
-                .departmentName(departmentDto.getDepartmentDtoName())
-                .build();
+                .departmentName(departmentDto.getDepartmentDtoName()).build();
     }
 }

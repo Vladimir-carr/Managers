@@ -38,13 +38,13 @@ public class DepartmentController {
         departmentService.addDepartment(departmentDto);
     }
 
-    @PostMapping("/get")
+    @GetMapping("/get")
     List<Department> getDepartments(@RequestBody Department department) {
         return departmentRepository.findAll();
     }
 
     @GetMapping("/get/{id}")
-    ResponseEntity<Department> getFromIfDepartment(@PathVariable(name = "id") long id) {
+    ResponseEntity<Department> getFromIdDepartment(@PathVariable(name = "id") long id) {
         Optional<Department> byId = departmentRepository.findById(id);
         if (byId.isPresent()) {
             return ResponseEntity.ok(byId.get());
