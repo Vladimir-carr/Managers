@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,7 @@ public class WorkerController {
         this.workRepository = workRepository;
     }
 
-    @PostMapping("/addWorker")
+    @PostMapping(value = "/addWorker", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addWorker(@RequestBody WorkerDto workerDto) {
         if (workerDto == null) {
             log.warn("Пришел пустой рабочий на метод addWorker");

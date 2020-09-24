@@ -14,7 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@JsonDeserialize(builder = Worker.class)
 @Entity
 @Table(name = "WORKER")
 public class Worker {

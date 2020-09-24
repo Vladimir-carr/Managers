@@ -1,5 +1,6 @@
 package com.managersproject.Managers.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
@@ -21,5 +22,6 @@ public class WorkShift {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id", foreignKey = @ForeignKey(name = "work_shift_to_worker"))
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JsonBackReference
     private Worker worker;
 }
